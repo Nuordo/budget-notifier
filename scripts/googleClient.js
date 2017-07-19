@@ -27,7 +27,7 @@ const authorize = (callback) => {
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, function(err, token) {
     if (err) {
-      token = JSON.parse(process.env.GOOGLE_TOKEN)
+      token = process.env.GOOGLE_TOKEN
       storeToken(token)
     }
 
@@ -49,7 +49,7 @@ const storeToken = (token) => {
       throw err
     }
   }
-  fs.writeFile(TOKEN_PATH, JSON.stringify(token))
+  fs.writeFile(TOKEN_PATH, token)
   console.log('Token stored to ' + TOKEN_PATH)
 }
 
